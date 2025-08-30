@@ -44,7 +44,7 @@ class PasswordEntry extends HiveObject {
       password: password ?? this.password,
       website: website ?? this.website,
       notes: notes ?? this.notes,
-      createdAt: createdAt,
+      createdAt: this.createdAt,
     );
   }
 }
