@@ -14,24 +14,37 @@ class PasswordEntryAdapter extends TypeAdapter<PasswordEntry> {
       title: fields[0] as String,
       username: fields[1] as String,
       password: fields[2] as String,
+      website: fields[3] as String,
+      notes: fields[4] as String?,
+      createdAt: fields[5] as DateTime,
     );
   }
 
   @override
   void write(BinaryWriter writer, PasswordEntry obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.title)
       ..writeByte(1)
       ..write(obj.username)
       ..writeByte(2)
-      ..write(obj.password);
+      ..write(obj.password)
+      ..writeByte(3)
+      ..write(obj.website)
+      ..writeByte(4)
+      ..write(obj.notes)
+      ..writeByte(5)
+      ..write(obj.createdAt);
   }
 
   @override
   int get hashCode => typeId.hashCode;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is PasswordEntryAdapter && runtimeType == other.runtimeType && typeId == other.typeId;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PasswordEntryAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
 }
